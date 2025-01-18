@@ -4,8 +4,7 @@ internal class Program
     private static void Main(string[] args)
     {
         int numrolls;
-        int[] rolls;
-        int[] rollpercents = {0,0,0,0,0,0,0,0,0,0,0};
+        int[] rolltotals;
         RollDice rd = new RollDice();
         Console.WriteLine("Welcome to the dice throwing simulator!");
         Console.WriteLine();
@@ -13,27 +12,23 @@ internal class Program
         numrolls = int.Parse(Console.ReadLine());
         Console.WriteLine();
         //Get the rolls by calling the roll class
-        rolls = rd.Roll(numrolls);
-        for (int i = 0; i < rolls.Length; i++)
-        {
-            //Count the number for each roll
-            rollpercents[rolls[i]-2]++;
-        }
+        rolltotals = rd.Roll(numrolls);
+        
         //divide counts by total to get percent
-        for (int i = 0; i < rollpercents.Length; i++)
+        for (int i = 0; i < rolltotals.Length; i++)
         {
-            rollpercents[i] *= 100;
-            rollpercents[i] /= numrolls;
+            rolltotals[i] *= 100;
+            rolltotals[i] /= numrolls;
         }
         Console.WriteLine("DICE ROLLING SIMULATION RESULTS");
         Console.WriteLine("Each \"*\" represents 1% of the total number of rolls.");
         Console.WriteLine("Total number of rolls = " + numrolls);
         Console.WriteLine();
         // Print a "*" for each percent per number
-        for (int i = 0;i < rollpercents.Length; i++)
+        for (int i = 0;i < rolltotals.Length; i++)
         {
             Console.Write(i+2 + ": ");
-            for (int j = 0; j < rollpercents[i];j++)
+            for (int j = 0; j < rolltotals[i];j++)
             {
                 Console.Write("*");
             }
